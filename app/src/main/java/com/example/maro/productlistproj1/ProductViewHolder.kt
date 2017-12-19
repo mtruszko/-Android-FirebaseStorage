@@ -6,7 +6,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.viewholder_product.view.*
 
 class ProductViewHolder(itemView: View,
-                        private val onClickListener: View.OnClickListener) : RecyclerView.ViewHolder(itemView) {
+                        private val onClickListener: View.OnClickListener,
+                        private val btnDeleteAction: (Product) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(product: Product) {
         itemView.setTag(product)
@@ -16,6 +17,12 @@ class ProductViewHolder(itemView: View,
         itemView.price.text = product.price.toString()
         if (!product.completed) {
             itemView.setBackgroundColor(Color.GRAY)
+        } else {
+            itemView.setBackgroundColor(Color.WHITE)
+        }
+
+        itemView.btnDel.setOnClickListener {
+            btnDeleteAction(product)
         }
     }
 }

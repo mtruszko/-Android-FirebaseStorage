@@ -3,6 +3,11 @@ package com.example.maro.productlistproj1
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import android.support.annotation.NonNull
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+
+
 
 object FirebaseDB {
 
@@ -33,5 +38,14 @@ object FirebaseDB {
                         Log.d(TAG, "get failed with ", task.exception)
                     }
                 }
+    }
+
+    fun deleteProduct(product: Product) {
+        db.collection("products")
+                .document(product.id)
+                .delete()
+                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+
     }
 }

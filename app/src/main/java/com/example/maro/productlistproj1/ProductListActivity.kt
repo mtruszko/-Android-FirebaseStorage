@@ -4,6 +4,8 @@ import android.content.ContentValues
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_product_list.*
 
@@ -16,10 +18,16 @@ class ProductListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_product_list)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ProductAdapter(onClickListener = { view ->
+        adapter = ProductAdapter(onClickListener = View.OnClickListener { view ->
             val product = view.getTag() as Product
-            //todo: handle on product click here
+            product.completed = !product.completed
+            FirebaseDB.saveToFirebase(product)
+            reloadProducts()
+        }, deleteAction = { product ->
+            FirebaseDB.deleteProduct(product)
+            reloadProducts()
         })
+
         recyclerView.adapter = adapter
 
         reloadProducts()
@@ -34,14 +42,7 @@ class ProductListActivity : AppCompatActivity() {
 
                 Toast.makeText(applicationContext, inputEmpty, Toast.LENGTH_LONG).show()
             } else {
-//                val values = ContentValues()
-//                values.put(ToDoContract.TaskEntry.KEY_DESCRIPTION, name)
-//                values.put(ToDoContract.TaskEntry.KEY_AMOUNT, count)
-//                values.put(ToDoContract.TaskEntry.KEY_PRICE, price)
-
-//                contentResolver.insert(ToDoContract.TaskEntry.CONTENT_URI, values)
-
-                val product = Product(name,"", count!!.toInt(), price!!.toInt(), false)
+                val product = Product(name, name, count!!.toInt(), price!!.toInt(), false)
                 FirebaseDB.saveToFirebase(product)
 
                 reloadProducts()
@@ -50,21 +51,6 @@ class ProductListActivity : AppCompatActivity() {
     }
 
     fun reloadProducts() {
-
         FirebaseDB.readListOfProducts { adapter.items = it }
-
-//        val uri = ToDoContract.TaskEntry.CONTENT_URI
-//
-//        val aaa = contentResolver.query(uri, null, null, null, null)
-//
-//        val list = generateSequence { if (aaa.moveToNext()) aaa else null }
-//                .map { Product(it.getString(ToDoContract.TaskEntry.ID_COLUMN),
-//                        it.getString(ToDoContract.TaskEntry.DESCRIPTION_COLUMN),
-//                        it.getInt(ToDoContract.TaskEntry.AMOUNT_COLUMN),
-//                        it.getInt(ToDoContract.TaskEntry.PRICE_COLUMN),
-//                        false) }
-//                .toList()
-//
-//        adapter.items = list
     }
 }
