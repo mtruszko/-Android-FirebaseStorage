@@ -24,7 +24,7 @@ object FirebaseDB {
                         val arrayOfProducts: MutableList<Product> = mutableListOf()
                         for (document in task.result) {
                             Log.d(TAG, document.id + " => " + document.data)
-                            val product = document.toObject<Product>(Product::class.java!!)
+                            val product = document.toObject(Product::class.java)
                             arrayOfProducts.add(product)
                         }
                         completion(arrayOfProducts)
