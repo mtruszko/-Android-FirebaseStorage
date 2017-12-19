@@ -9,13 +9,17 @@ import kotlinx.android.synthetic.main.activity_product_list.*
 
 class ProductListActivity : AppCompatActivity() {
 
-    val adapter = ProductAdapter()
+    lateinit var adapter: ProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = ProductAdapter(onClickListener = { view ->
+            val product = view.getTag() as Product
+            //todo: handle on product click here
+        })
         recyclerView.adapter = adapter
 
         reloadProducts()

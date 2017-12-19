@@ -3,9 +3,10 @@ package com.example.maro.productlistproj1
 import android.content.ContentValues
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 
-class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
+class ProductAdapter(private val onClickListener: View.OnClickListener) : RecyclerView.Adapter<ProductViewHolder>() {
 
     var items = listOf<Product>()
         set(value) {
@@ -16,7 +17,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            ProductViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.viewholder_product, parent, false))
+            ProductViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.viewholder_product, parent, false), onClickListener)
                     .listen{ pos, type ->
                 val item = items.get(pos)
 
