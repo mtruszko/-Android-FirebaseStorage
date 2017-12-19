@@ -1,7 +1,9 @@
 package com.example.maro.productlistproj1
 
 import android.graphics.Color
+import android.support.v7.widget.RecyclerView
 import android.view.View
+import kotlinx.android.synthetic.main.viewholder_product.view.*
 
 class ProductViewHolder(itemView: View,
                         private val onClickListener: View.OnClickListener) : RecyclerView.ViewHolder(itemView) {

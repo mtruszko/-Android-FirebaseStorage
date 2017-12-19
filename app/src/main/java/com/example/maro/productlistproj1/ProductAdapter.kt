@@ -18,20 +18,20 @@ class ProductAdapter(private val onClickListener: View.OnClickListener) : Recycl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ProductViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.viewholder_product, parent, false), onClickListener)
-                    .listen{ pos, type ->
-                val item = items.get(pos)
-
-                var values = ContentValues()
-                        values.put(ToDoContract.TaskEntry.KEY_ID, item.id)
-                values.put(ToDoContract.TaskEntry.KEY_DESCRIPTION, item.description)
-//                values.put(ToDoContract.TaskEntry.KEY_AMOUNT, count)
-//                values.put(ToDoContract.TaskEntry.KEY_PRICE, price)
-                  values.put(ToDoContract.TaskEntry.KEY_COMPLETED, !item.completed)
-                        item.completed = !item.completed
-
-                parent.context.contentResolver.update(ToDoContract.TaskEntry.CONTENT_URI, values, null, null)
-                notifyDataSetChanged()
-            }
+//                    .listen{ pos, type ->
+//                val item = items.get(pos)
+//
+//                var values = ContentValues()
+//                        values.put(ToDoContract.TaskEntry.KEY_ID, item.id)
+//                values.put(ToDoContract.TaskEntry.KEY_DESCRIPTION, item.description)
+////                values.put(ToDoContract.TaskEntry.KEY_AMOUNT, count)
+////                values.put(ToDoContract.TaskEntry.KEY_PRICE, price)
+//                  values.put(ToDoContract.TaskEntry.KEY_COMPLETED, !item.completed)
+//                        item.completed = !item.completed
+//
+////                parent.context.contentResolver.update(ToDoContract.TaskEntry.CONTENT_URI, values, null, null)
+//                notifyDataSetChanged()
+//            }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) =
             holder.bind(items[position])
