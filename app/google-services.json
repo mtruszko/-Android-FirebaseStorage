@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "721245240312",
+    "firebase_url": "https://proj3and.firebaseio.com",
+    "project_id": "proj3and",
+    "storage_bucket": "proj3and.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721245240312:android:a11383cec505796b",
+        "android_client_info": {
+          "package_name": "com.example.maro.productlistproj1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721245240312-1238lk28n27i61umlif00p5qqgega9u2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maro.productlistproj1",
+            "certificate_hash": "1d29c410014e33a7d31e5baf37bffeb300711ffe"
+          }
+        },
+        {
+          "client_id": "721245240312-2ljvu8152169uh7bt8k4bjb68db92kje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWASYI6p18cV5p9MJeDnO57vb3Mx29pXQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721245240312-2ljvu8152169uh7bt8k4bjb68db92kje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
